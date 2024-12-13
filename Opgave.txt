@@ -1,0 +1,55 @@
+Cloud Linux – Case øvelse.
+Før I starter.
+Før der startes på casen, er der nogle få ting, som man skal være opmærksom på:
+• Rocky Linux, Microsoft server kan med fordel installeres og konfigurer på hypervisor.
+• I denne øvelse kan man kun køre lokalt DNS og DHCP bag en firewall (pfsense) og må under ingen
+omstændigheder komme ind på ZBC-netværk. Men som virtuelt netværk på hypervisoren funger dette fint.
+Men vær opmærksom på, at der skal installeres og opsættes en firewall, før der installeres og konfigureres
+DHCP i det virtuel netværk.
+• Cloud Linux øvelsen skal dokumenteres, og alle spørgsmålene i øvelsen skal besvares.
+• Hele case øvelsen skal dokumenters og fremlægges efter aftale med underviser.
+• Plan og løsningsforslag skal godkendes af underviseren, før I udfører Case øvelsen i teamet.
+• Der skal være en projektansvarlig for gruppen, som har ansvaret for opgavefordelingen og for
+dokumentationen.
+Besvar følgende spørgsmål og inkluder dem i dokumentationen, før I starter på case øvelsen:
+• Hvad er forskellen på Cloud Computing og Cloud Netværk?
+• Hvad er SAAS, PAAS, IAAS?
+• Hvad er forskellen på en privat cloud og public cloud?
+• Hvad er Ubuntu cloud?
+• Hvad er Openstack?
+• Hvad er VMware vSphere?
+• Hvad er Kubernetes og hvad kan det bruges til?
+• Hvad er forskellen på Google Cloud vs AWS vs Azure?
+• Hvad er forskellen på Cloud clostering og Cloud Computing?
+Link til Video om Cloud: https://www.youtube.com/watch?v=M988_fsOSWo
+Case Øvelse
+Øvelsen tager udgangspunkt i en virksomhedsopgave fra erhvervslivet, hvor en virksomhed T&T ønsker en løsning
+med installation af en privat cloud løsning i deres lokale datacenter.
+Det kan oplyses, at T&T har opkøbt en større hotelkæde med 200 ansatte og forventer en vækst på 20-25% i løbet af
+de næste 3 år.
+Virksomheden T&T har nogle krav som skal være opfyldt:
+Inden projekt start:
+• Løsning forslag over projekt
+• Plan (Gantt diagram)
+• Undersøg hvad NextCloud er for en teknologi
+Skal være med i dokumentation:
+• Undersøg hvilke Cloud løsning der virker for virksomheden T&T (Det skal med i løsningsforslaget)
+• OS systemet skal rumme et mixet miljø af Windows og Linux
+• Der skal indgå en Private Cloud løsning med en backup database f.eks. TrueNAS, Synology NAS, Veeam eller
+anden form for backup løsning
+• Intern fildeling i et Linux miljø (Adgang via. FTP og Samba server)
+• Lokalt DNS og DHCP
+• Lokalt Mail server f.eks. Postfix, Mailu, Mailcow eller mail-in-a-box hvor der anvendes NextCloud mail klient
+• Lokalt Web-server med Database og CMS-system (intranet)
+• Lokalt Database med kundeoplysninger som skal overflyttes til Private Cloud løsningen
+• Der skal indgå følge SQL Syntax i case øvelsen Stored Procedures og JOIN-statement skal indgå i løsning
+• Firewall som beskytter intranettet og serveren
+• Der skal løbende tages backup af Mail, File server, Web-server og Database på f.eks. NAS eller et
+cloudprodukt ud fra backupprincippet 321.
+• Plan og løsningsforslag for at overflytte fra private cloud til public cloud i fremtiden.
+• Alt skal dokumenteres og der skal være topologitegninger og Database diagrammer
+(ER og Klasse diagrammer)
+Til info skal alle krav ikke opfyldes i Cloud Linux case øvelsen, men NextCloud skal indgå i løsningen.
+Opgaven er nu at komme med et løsningsforslag, som skal fremlægges for virksomheden (lærer/censor) om ca. 14
+dage, som indeholder en fysisk opsætning i et test lab (EXSI-server), en PowerPoint præsentation og aflevering af
+dokumentation i PDF-format til virksomheden.
