@@ -2,7 +2,7 @@ Her er det opdaterede løsningsforslag med en **Domain Controller Server** (Linu
 
 ---
 
-```markdown
+
 # **Løsningsforslag for T&T IT Infrastruktur**
 
 Dette løsningsforslag integrerer en **Private Cloud**-løsning med backup, et **mixet miljø af Windows og Linux** samt de angivne systemkrav.
@@ -123,4 +123,3 @@ JOIN Customers ON Orders.CustomerID = Customers.ID;
 ---
 
 Dette forslag sikrer en **robust, fleksibel og fremtidssikret løsning** for virksomheden T&T, med styring af både Linux og Windows miljøer.
-```
