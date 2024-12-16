@@ -1,7 +1,10 @@
+Selvfølgelig! Her er et opdateret forslag, der inkluderer en beslutning om at vælge en **Private Cloud-løsning** i stedet for Public Cloud eller Hybrid Cloud, og hvordan det vil fungere i forhold til virksomhedens behov.
 
-# **Løsningsforslag for T&T IT Infrastruktur**
+---
 
-Dette løsningsforslag integrerer en **Private Cloud**-løsning med backup, et **mixet miljø af Windows og Linux** samt de angivne systemkrav.
+# **Løsningsforslag for T&T IT Infrastruktur: Private Cloud Løsning**
+
+Dette løsningsforslag beskriver en **Private Cloud**-løsning for T&T, der integrerer alle nødvendige systemer, backup og administration. Dette valg er baseret på behovet for højere kontrol, sikkerhed og isolering, samt at det lever op til virksomhedens specifikke krav.
 
 ---
 
@@ -28,18 +31,27 @@ Dette løsningsforslag integrerer en **Private Cloud**-løsning med backup, et *
 
 ---
 
-## **2. Cloud Løsning**
-Efter en vurdering af virksomhedens behov og budget foreslås følgende:
+## **2. Private Cloud Løsning**
 
-- **Private Cloud**:
-    - **NextCloud** fungerer som platform til intern fildeling og mail-klient.
-    - Backup håndteres med **TrueNAS** og cloud-backup (f.eks. AWS S3, Google Cloud Storage eller Azure).
-- **Public Cloud (fremtidig plan)**:
-    - Mulighed for at migrere backup og databasesystemer til Public Cloud (f.eks. Amazon RDS, Azure SQL).
+I stedet for at vælge en **Public Cloud** eller **Hybrid Cloud** løsning, vil T&T vælge en **Private Cloud-løsning**, som giver højere kontrol over data, bedre sikkerhed og bedre overholdelse af virksomhedens krav.
+
+### **Valg af Private Cloud-løsning:**
+- **Fordele ved Private Cloud**:
+    - **Kontrol**: Full kontrol over alle data, systemer og infrastruktur.
+    - **Sikkerhed**: Bedre sikkerhed, da dataene er hostet internt eller i et privat datacenter, hvilket reducerer risikoen for eksponering.
+    - **Compliance**: Det er lettere at opfylde specifikke compliance-krav (f.eks. GDPR), når data ikke er gemt på eksterne offentlige cloudtjenester.
+    - **Tilpasning**: En private cloud-løsning kan tilpasses virksomhedens specifikke behov og krav.
+  
+### **Private Cloud Arkitektur**
+- Brug af **On-Premise Private Cloud** ved hjælp af værktøjer som **VMware vSphere** eller **OpenStack** til at administrere ressourcer, hvor al hardware og software er dedikeret til virksomheden.
+- **Backup** håndteres både lokalt via **TrueNAS** og gennem en offsite backup-løsning i en **Private Cloud**.
 
 ---
 
 ## **3. Operativsystemer**
+
+T&T vil fortsat anvende en kombination af **Windows** og **Linux** operativsystemer i deres private cloud-miljø for at understøtte forskellige systemkrav.
+
 - **Linux**:
     - **Domain Controller**: Samba AD til Windows administration.
     - DNS, DHCP, MariaDB, File Server (FTP/Samba), Web Server, Mail Server og NextCloud server.
@@ -50,22 +62,26 @@ Efter en vurdering af virksomhedens behov og budget foreslås følgende:
 ---
 
 ## **4. Backup Strategi**
-Backup tager udgangspunkt i **3-2-1 princippet**:
+
+Backup forbliver baseret på **3-2-1 princippet**, men med fokus på den private cloud-løsning:
 - **3 kopier af data**:
     - Live-data (på filserver, web-server og database).
     - Lokal backup til **TrueNAS**.
-    - Offsite backup til **Cloud Backup** (AWS S3/Google Cloud).
+    - Offsite backup til **Private Cloud Backup**.
 - **2 forskellige medier**:
     - NAS og cloud.
 - **1 kopi offsite**:
-    - I cloudmiljø.
+    - I cloudmiljøet (privat cloud).
+
+Dette sikrer, at T&T har en effektiv backup-struktur, der både beskytter mod lokale hardwarefejl og ekstern nedetid.
 
 ---
 
 ## **5. Domain Controller med Samba AD**
+
+En **Private Cloud**-løsning giver mulighed for at centralisere bruger- og adgangsstyring:
 - **Samba AD** opsættes som **Domain Controller** for at styre Windows-klienter.
-- Brugere og grupper administreres centralt.
-- **Windows-klienter** tilsluttes domænet for central styring af:
+- Brugere og grupper administreres centralt, og **Windows-klienter** tilsluttes domænet for central styring af:
     - Rettigheder.
     - Netværksadgang.
     - Fildeling via Samba.
@@ -73,49 +89,50 @@ Backup tager udgangspunkt i **3-2-1 princippet**:
 ---
 
 ## **6. Database og SQL Krav**
-**MariaDB** vil håndtere kundeoplysninger og intranet data. Eksempler på SQL-syntax:
 
-### **Stored Procedure**
-```sql
-DELIMITER $$
-CREATE PROCEDURE GetCustomerData(IN CustomerID INT)
-BEGIN
-    SELECT * FROM Customers WHERE ID = CustomerID;
-END$$
-DELIMITER ;
-```
+**MariaDB** vil håndtere kundeoplysninger og intranet data i den private cloud:
+- **Database**: MariaDB vil blive hostet på lokale servere, og adgangen til databasen vil blive kontrolleret via private netværk.
+  
+### **Eksempler på SQL-syntax**:
+#### Stored Procedure
 
-### **JOIN Statement**
-```sql
-SELECT Orders.OrderID, Customers.Name
-FROM Orders
-JOIN Customers ON Orders.CustomerID = Customers.ID;
-```
 
----
+#### JOIN Statement
+
 
 ## **7. Migration fra Private Cloud til Public Cloud**
-1. **Analyse**: Vurdering af databaser og filstruktur.
-2. **Backup & Test**: Før migrering, lav test-backup.
-3. **Data-overflytning**: Brug værktøjer som **rsync** eller cloud migration services.
-4. **Optimering**: Konfigurér cloud-services som AWS S3, RDS eller Azure SQL.
+
+Selvom T&T vælger at anvende en **Private Cloud-løsning**, bør de stadig overveje muligheden for at migrere til en **Public Cloud** i fremtiden for visse workloads, såsom backup eller redundans. Her er trinnene for migration:
+
+1. **Analyse**: Vurdering af databaser og filstruktur i private cloud.
+2. **Backup & Test**: Før migrering, lav test-backup og planlæg for overgang til en offentlig cloud-backupløsning.
+3. **Data-overflytning**: Brug værktøjer som **rsync** eller private cloud migration services.
+4. **Optimering**: Konfigurér de private cloud-ressourcer som **AWS S3**, **Azure SQL** eller lignende, hvis virksomheden vælger en offentlig cloud til fremtidig redundans eller specielle formål.
 
 ---
 
 ## **8. Sikkerhed**
-- **PFSense Firewall** beskytter mod uautoriseret adgang.
-- **Wazuh** implementeres til log-management og overvågning.
-- **Domain Controller** styrer brugertilgange og sikkerhedsrettigheder.
-- **Backup** sikrer datatab mod f.eks. ransomware-angreb.
+
+I en **Private Cloud-løsning** vil T&T have fuld kontrol over sikkerheden:
+- **PFSense Firewall** vil beskytte mod uautoriseret adgang både eksternt og internt.
+- **Wazuh** implementeres som SIEM-løsning for at overvåge og håndtere logfiler og trusler.
+- **Backup**: Offsite backup til en **Private Cloud Backup-løsning** sikrer beskyttelse mod datatab.
+  
+Sikkerhedsprotokoller såsom **VPN**, **TLS/SSL** kryptering og **Multi-Factor Authentication (MFA)** kan også implementeres for ekstra beskyttelse.
 
 ---
 
 ## **9. Dokumentation**
-- **Topologidiagram** (som dit nuværende).
-- **Database-ER diagram** (MariaDB).
+
+- **Topologidiagram** (detaljeret overblik over den private cloud-infrastruktur).
+- **Database-ER diagram** (MariaDB struktur).
 - **Klasse diagrammer** til systemintegration og dataflyd.
 - Dokumentation af **Domain Controller opsætning** og Windows-klient integration.
 
 ---
 
-Dette forslag sikrer en **robust, fleksibel og fremtidssikret løsning** for virksomheden T&T, med styring af både Linux og Windows miljøer.
+## **Konklusion**
+
+Ved at vælge en **Private Cloud-løsning** får T&T maksimal kontrol og sikkerhed over deres infrastruktur, samtidig med at de kan opfylde compliance-krav og sikre følsomme data. Dette forslag fokuserer på at optimere både eksisterende hardware og software i en privat cloud, der kan håndtere virksomhedens nuværende og fremtidige behov.
+
+T&T kan fortsat drage fordel af cloud-baserede løsninger til backup og eventuel fremtidig skalerbarhed, men vil primært have kontrollen over data og applikationer i et privat miljø.
