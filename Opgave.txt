@@ -1,5 +1,5 @@
 Cloud Linux – Case øvelse.
-Før I starter.
+Før I starter. sup my friend
 Før der startes på casen, er der nogle få ting, som man skal være opmærksom på:
 • Rocky Linux, Microsoft server kan med fordel installeres og konfigurer på hypervisor.
 • I denne øvelse kan man kun køre lokalt DNS og DHCP bag en firewall (pfsense) og må under ingen
