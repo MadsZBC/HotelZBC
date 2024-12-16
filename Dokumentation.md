@@ -2,9 +2,9 @@
 [Logo/Billede]
 
 ## Projektinformation
-**Projektperiode:** [Startdato] - [Slutdato]  
+**Projektperiode:** [16-12-24] - [10-1-25]  
 **Deltagere:**  
-- [Navn] ([Email])
+- [Robin] ([robi2069@zbc.dk])
 - [Navn] ([Email])
 
 ## Indholdsfortegnelse
@@ -20,6 +20,7 @@
 | Dokumentation | | |
 
 ## 2. Problemformulering
+
 ### 2.1 Kundens Udfordringer
 - Nuværende IT-infrastruktur er utilstrækkelig
 - Manglende skalerbarhed
@@ -36,6 +37,7 @@
 [Detaljeret beskrivelse af kundens opgave baseret på kravspecifikationen]
 
 ## 4. Løsningsforslag
+
 ### 4.1 Overordnet Arkitektur
 [Indsæt netværksdiagram]
 
@@ -49,6 +51,7 @@
 [Liste over elementer der ikke er omfattet af projektet]
 
 ## 5. Design og Systembeskrivelse
+
 ### 5.1 Hardware Specifikationer
 [Detaljer fra kravspecifikationen]
 
@@ -59,28 +62,40 @@
 [VLAN struktur og netværkstopologi]
 
 ## 6. Teoretisk Grundlag
+
 ### 6.1 Cloud Computing Koncepter
+
 ### 6.2 High Availability Principper
+
 ### 6.3 Backup Strategier
 
 ## 7. Implementation
 [Henvisning til teknisk vejledning]
 
-## 8. Sikkerhed
+
 ### 8.1 Sikkerhedsforanstaltninger
+
 ### 8.2 Adgangsstyring
+
 ### 8.3 Backup og Recovery
 
+
 ## 9. Diskussion
+
 ### 9.1 Udfordringer
+
 ### 9.2 Løsninger
+
 ### 9.3 Fremtidige Forbedringer
 
 ## 10. Konklusion
 
 ## 11. Referencer og Bilag
+
 ### 11.1 Kilder
+
 ### 11.2 Eksterne Referencer
+
 ### 11.3 Bilag
 
 ## 12. Daglig Logbog
