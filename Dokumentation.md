@@ -49,6 +49,91 @@
 
 ### 4.3 Afgrænsning
 [Liste over elementer der ikke er omfattet af projektet]
+### 4.4 Løsningsplan for Migration fra Private Cloud til Public Cloud
+1. Forberedelse og Analyse
+Før migrationen er det vigtigt at foretage en grundig analyse af den eksisterende private cloud-infrastruktur, herunder:
+
+Vurdering af eksisterende systemer: Identifikation af alle de systemer, der skal flyttes til Azure, herunder:
+Webserver (Next.js)
+Mailserver (Postfix)
+Database (MariaDB)
+Backup og datalagring
+Databeskyttelse: Vurdering af eventuelle juridiske og compliance-krav (f.eks. GDPR) og hvordan disse opfyldes i Azure.
+Tjenesteafhængigheder: Identifikation af systemer, som er afhængige af hinanden, og hvordan migrationen skal udføres for at minimere nedetid.
+2. Valg af Azure Tjenester og Infrastruktur
+Vi vælger relevante Azure-tjenester baseret på behovet for performance, sikkerhed og skalerbarhed.
+
+2.1 Webserver (Next.js)
+Tjenestevalg: Azure App Service eller Azure Virtual Machines.
+Azure App Service: Anbefales for en mere administreret løsning, der tilbyder automatiseret scaling, let deployment og integration med CI/CD pipelines.
+Azure Virtual Machines: Anbefales, hvis vi har brug for mere kontrol over serverkonfigurationen.
+2.2 Mailserver (Postfix)
+Tjenestevalg: Azure Virtual Machines (VMs) til at hoste Postfix.
+Postfix vil blive installeret og administreret på en Azure VM.
+Alternativt kan vi overveje at bruge Microsoft 365 for en mere administreret e-mail-løsning.
+2.3 Database (MariaDB)
+Tjenestevalg: Azure Database for MariaDB.
+Denne tjeneste tilbyder en fuldt administreret database med indbyggede funktioner som automatisk skalering, sikkerhed, backup og opdateringer.
+2.4 Backup
+Tjenestevalg: Azure Backup.
+Vi opretter en sikker backup-løsning til alle relevante data (Web, Mail, DB) ved hjælp af Azure Backup for at sikre, at vi følger 3-2-1 backup-princippet (3 kopier, 2 medier, 1 offsite).
+2.5 Networking
+Tjenestevalg: Azure Virtual Network, Azure VPN Gateway, og Azure Load Balancer.
+Konfiguration af et Azure Virtual Network (VNet) for at forbinde alle ressourcer i et sikkert netværk.
+Opsætning af VPN Gateway for sikre forbindelser mellem den private infrastruktur og Azure.
+Azure Load Balancer kan anvendes til at fordele trafik på tværs af webserverne for høj tilgængelighed.
+3. Migration Trin-for-Trin
+Trin 1: Sikkerhed og Backup
+Backup af eksisterende data fra private cloud til lokal storage og cloud-backup.
+Kryptering af data under overførsel og i hvile ved hjælp af Azure Storage Encryption og SSL/TLS for webtrafik.
+Oprettelse af Azure Key Vault til at opbevare og beskytte følsomme oplysninger som API-nøgler og adgangskoder.
+Trin 2: Opsætning af Azure Infrastruktur
+Oprettelse af nødvendige Azure ressourcer (App Service, Virtual Machines, Database for MariaDB, Backup).
+Konfiguration af Azure Virtual Network og Network Security Groups (NSG) for at sikre netværkets sikkerhed.
+Oprettelse af Azure Active Directory (AAD) for centraliseret bruger- og adgangsstyring.
+Konfiguration af Azure Firewall for at beskytte mod uautoriseret adgang.
+Trin 3: Migration af Systemer
+Webserver (Next.js)
+Opret en Azure App Service eller en Azure VM til hosting af Next.js-applikationen.
+Konfigurer CI/CD pipelines ved hjælp af Azure DevOps eller GitHub Actions for nem deployment.
+Test applikationen i Azure for at sikre, at den fungerer korrekt.
+Mailserver (Postfix)
+Opret en Azure VM til at hoste Postfix.
+Konfigurer Postfix på VM’en og sørg for, at alle e-mail-indstillinger fungerer korrekt.
+Test mailserveren for korrekt funktionalitet og integration.
+Database (MariaDB)
+Opret en instans af Azure Database for MariaDB.
+Migrer data fra den eksisterende MariaDB-server i private cloud til Azure MariaDB instansen.
+Test forbindelsen til databasen og sørg for, at applikationerne fungerer korrekt med den nye database.
+Backup
+Opsæt Azure Backup til at tage backups af alle relevante systemer.
+Test, at backupene fungerer korrekt og kan gendannes ved behov.
+4. Sikkerhed og Compliance
+Azure Active Directory (AAD) bruges til at håndtere brugere og rettigheder centralt.
+Azure Security Center implementeres for at overvåge sikkerhed og risici.
+Alle data krypteres både under overførsel og i hvile.
+Azure Sentinel kan bruges til at overvåge sikkerhedslogfiler og detektere potentielle trusler.
+5. Test og Optimering
+Efter migrationen udfører vi omfattende tests:
+
+Systemtest: Verificering af, at alle systemer fungerer korrekt efter migrationen (Next.js-applikation, Postfix-mailserver, MariaDB).
+Ydeevnetest: Test af webserverens skalerbarhed ved at simulere trafik og sikre, at auto-scaling og load balancing fungerer korrekt.
+Sikkerhedstest: Verificering af, at firewall-regler, netværksbeskyttelse og adgangskontroller er korrekt konfigureret.
+Backup-test: Test af backup- og restore-processen for at sikre, at data kan gendannes korrekt.
+6. Overvågning og Drift
+Efter migreringen opsætter vi løbende overvågning og driftsstyring:
+
+Azure Monitor til at overvåge ydeevne og status på applikationer og ressourcer.
+Azure Log Analytics for at få indsigt i logdata og identificere eventuelle problemer.
+Azure Cost Management til at holde styr på omkostninger og optimere ressourceforbruget.
+7. Langsigtet Plan
+Skalering: Efter migrationen vil vi fortsat kunne skalere ressourcerne baseret på behov ved hjælp af auto-scaling og Azure Load Balancer.
+Automatisering: Vi kan implementere Azure Automation til at automatisere gentagne administrative opgaver.
+Udvidelse af tjenester: Efterhånden som T&T’s behov udvikler sig, kan vi udvide med yderligere Azure-tjenester som Azure Kubernetes Service (AKS), Azure AI og Azure Machine Learning.
+Opsummering
+Denne plan sikrer en effektiv migration fra T&T’s private cloud til Microsoft Azure, og dækker alle aspekter fra forberedelse, opsætning af Azure-tjenester, migration af systemer, sikkerhed, test, og driftsstyring. Ved at vælge Azure App Service, Azure Virtual Machines, Azure Database for MariaDB og Azure Backup, får vi en skalerbar, sikker og pålidelig løsning for fremtidig drift.
+
+Efter migrationen vil T&T have en fleksibel, cloud-baseret infrastruktur, der er klar til at imødekomme både nuværende og fremtidige krav.
 
 ## 5. Design og Systembeskrivelse
 
@@ -60,6 +145,8 @@
 
 ### 5.3 Netværksdesign
 [VLAN struktur og netværkstopologi]
+
+
 
 ## 6. Teoretisk Grundlag
 
