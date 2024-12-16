@@ -19,6 +19,7 @@ flowchart TB
     end
     
     subgraph Internal
+        FW --> Wazuh
         FW --> DNS[DNS Server]
         FW --> DHCP[DHCP Server]
         FW --> NC[NextCloud Server]
