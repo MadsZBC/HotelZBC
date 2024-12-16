@@ -1,7 +1,3 @@
-Her er det opdaterede løsningsforslag med en **Domain Controller Server** (Linux-baseret) og specifikationer for **Windows-klienter** opdelt mellem teknikere og brugere:
-
----
-
 
 # **Løsningsforslag for T&T IT Infrastruktur**
 
